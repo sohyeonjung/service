@@ -1,0 +1,22 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.4.3'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+//하위에 있는 모든 프로젝트에 대해 (자식 프로젝트)
+allprojects {
+    repositories {
+        mavenCentral()
+    }
+}
+
+//소스 코드가 없으므로
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = false
+}
+
