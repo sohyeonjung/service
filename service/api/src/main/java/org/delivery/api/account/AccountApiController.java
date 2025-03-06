@@ -2,11 +2,14 @@ package org.delivery.api.account;
 
 
 import lombok.RequiredArgsConstructor;
+import org.delivery.api.account.model.AccountMeResponse;
 import org.delivery.db.account.AccountEntity;
 import org.delivery.db.account.AccountRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.time.LocalDateTime;
 
 /*
 자신과 동일한 패키지 안에 있는 것들만 빈으로 등록하기 때문에 autowired 되지 않음
@@ -20,10 +23,13 @@ public class AccountApiController  {
 
     private final AccountRepository accountRepository;
 
-    @GetMapping("")
-    public void save(){
-        var account = AccountEntity.builder().build();
-        accountRepository.save(account);
+    @GetMapping("/me")
+    public AccountMeResponse me(){
+        return AccountMeResponse.builder()
+                .name("홍길동")
+                .email("A@gmail.com")
+                .registeredAt(LocalDateTime.now())
+                .build();
     }
 
 }
